@@ -12,7 +12,10 @@ export function creatPlugin ():PluginOption {
   const vitePlugins: PluginOption = [vue(), vueJsx()]
   vitePlugins.push(
     AutoImport({
-      imports: ['vue', 'vue-router'],
+      imports: [
+        'vue',
+        'vue-router'
+      ],
       eslintrc: {
         enabled: true,
         filepath: './.eslintrc-auto-import.json'
@@ -21,7 +24,7 @@ export function creatPlugin ():PluginOption {
     Components({
       dirs: ['src/components'], // 指定自定义组件目录
       resolvers: [ // 自定义解析器，用于解析特定库的组件
-        VxeResolver({ libraryName: 'vxe-table', importStyle: false })
+        VxeResolver({ libraryName: 'vxe-table', importStyle: true }) // 自动引入虚拟表格组件
       ]
     })
   )

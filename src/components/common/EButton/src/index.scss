@@ -1,0 +1,75 @@
+.el-button {
+  padding: 5px 16px;
+  border: 1px solid #DCDFE6;
+  &:focus {
+    background: #fff;
+    color: #666666;
+  }
+  &:hover {
+    background: #fff;
+    border: 1px solid #5687FF;
+    color: #5687FF;
+  }
+  &:active{
+    border: 1px solid #4470DB;
+    color: #4470DB;
+  }
+  &.is-disabled {
+    background: #ffffff;
+    border: 1px solid #E4E7ED;
+    color: #AAAAAA;
+    &:hover {
+      background: #ffffff;
+      color: #AAAAAA;
+    }
+  }
+  &.is-link{
+    border-color: transparent;
+    color: var(--el-button-text-color);
+    background: transparent !important;
+    padding: 2px;
+    height: auto;
+    &:hover{
+      color: var(--el-button-text-color) !important;
+    }
+  }
+  &.el-button--primary {
+    background: #5687FF;
+    border: none;
+    &:hover {
+      background: #89ABFF;
+      color: #ffffff;
+    }
+    &:active {
+      background: #4470DB;
+    }
+    &:focus {
+      color: #ffffff;
+    }
+    &.is-disabled {
+      background: #AAC3FF;
+      color: #fff;
+      &:hover {
+        background: #AAC3FF;
+      }
+    }
+  }
+  &.is-text{
+    border: none;
+    color: #5687FF;
+
+    &:active{
+      background: #F0F2F5;
+    }
+    &:focus {
+      background: transparent; // fix UI roleManage
+    }
+    &:hover {
+      background: #F5F7FA;
+    }
+    &.is-disabled {
+      color: #AAAAAA;
+    }
+  }
+
+}

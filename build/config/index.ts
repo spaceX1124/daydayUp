@@ -1,12 +1,23 @@
 import { defineConfig, mergeConfig, type UserConfig } from 'vite'
 import { creatPlugin } from '../plugins'
+import { execSync } from 'child_process'
+let __GIT_HASH__ = ''
+try {
+  __GIT_HASH__ = JSON.stringify(execSync('git rev-parse HEAD', { encoding: 'utf8', stdio: 'pipe' }))
+} catch (error) {
+  console.error('Error executing git command:', error)
+  if (error.stderr) {
+    console.error('Error details:', error.stderr.toString())
+  }
+}
+
 interface DefineOptions {
   overrides?: UserConfig
 }
 export function defineAppConfig<T extends DefineOptions> (defineOptions: T ) {
   const { overrides } = defineOptions
   const common = {
-    root: process.cwd(), //
+    root: process.cwd(),
     base: './', // 开发或生产环境服务的公共基础路径
     // css: {
     //   preprocessorOptions: {
@@ -19,7 +30,7 @@ export function defineAppConfig<T extends DefineOptions> (defineOptions: T ) {
     //   }
     // },
     server: {
-      port: 9988,
+      port: 6688,
       open: false,
       https: false
     }
@@ -27,7 +38,10 @@ export function defineAppConfig<T extends DefineOptions> (defineOptions: T ) {
   return defineConfig(({ mode }) => {
     const plugins = creatPlugin()
     const defaultConfig = {
-      plugins
+      plugins,
+      define: {
+        __GIT_HASH__
+      }
     }
     const config = mergeConfig(defaultConfig, common)
     return mergeConfig(config, overrides)

@@ -10,7 +10,7 @@
 └── vite.config.ts # vite配置文件
 ```
 ### 插件使用
-1.unplugin-auto-import
+1. unplugin-auto-import
 ```markdown
 pnpm i unplugin-auto-import -D
 ```
@@ -31,6 +31,13 @@ AutoImport({
 - 按需打包
   - 该插件在编译时或打包时动态插入导入语句，它能确保只有真正用到的api会被打包进最终的输出文件中，这意味着即使库很大，只用了小部分的API，打包后体积也会很小
 
+2. unplugin-vue-components
+```markdown
+pnpm i unplugin-vue-components -D
+```
+该插件会扫描Vue文件，识别出所有的自定义组件标签（未被正确导入的标签），监听文件变化，并自动添加对应的导入语句（我们可以看到浏览器加载当前页面的源文件中是有import涉及到的组件的，只是没在代码中体现，该插件帮我们做了这件事）。并且帮助我们自动生成components.d.ts类型文件，当文件发生变化该类型文件会自动更新（这就是每次我们拉了代码之后components.d.ts文件会变更的原因，是插件帮助我们更新了类型文件）
+
 
 ### vite配置相关
-1.process：该对象是node.js环境中的一个特殊的对象，提供了当前node.js进程的信息，不能直接在js中使用，浏览器环境不支持原生的process对象。但是在vite或者其他前端构建工具的开发环境中，由于利用的rollup，webpack或esbuild的打包器，都是**基于node.js环境运行开发服务器的**，因此在vite.config.ts或者.env文件可以访问
+1. process：该对象是node.js环境中的一个特殊的对象，提供了当前node.js进程的信息，不能直接在js中使用，浏览器环境不支持原生的process对象。但是在vite或者其他前端构建工具的开发环境中，由于利用的rollup，webpack或esbuild的打包器，都是**基于node.js环境运行开发服务器的**，因此在vite.config.ts或者.env文件可以访问
+2. define：就是定义全局的常量，控制环境变量（如环境变量）、API端点、版本信息等非常有用
